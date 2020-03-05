@@ -176,5 +176,5 @@ def extract_flowers_from_input_stream(input_stream: str) -> List:
 
 
 if __name__ == '__main__':
-    input_file_name = "sample2.txt"
+    input_file_name = "sample.txt"
     production_facility(input_file_name)
