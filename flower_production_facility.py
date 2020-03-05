@@ -55,9 +55,10 @@ def match_flower_streams_with_bouquet_design_structures(flower: str, bouquet_des
     Takes as input a flower that has been taken from the stream of flowers. It increments the counter for that
     flower type and then tries to see if a bouquet can be created. For each bouquet design it does this by examining
     the type of flowers in them and the number of each flower type. It then examines the flower counter to see if there
-    are enough flowers of each flower type to make a bouquet. We then check the total number of flowers needed to make a
-    bouquet from that bouquet design and compare it to the total number of flowers that have currently been picked from
-    the flower stream to see if the flower ty.
+    are enough flowers of each flower type to make a bouquet. It also checks the total number of flowers specified in
+    the bouquet design to see if additional flowers are needed for making the bouquet. If all the conditions are
+    satisfied it prints the bouquet name to the console and removes the flowers used for making the bouquet from the
+    counter of flowers picked from the stream of flowers.
 
     Parameters:
        flower(str): The flower from the stream of flowers
