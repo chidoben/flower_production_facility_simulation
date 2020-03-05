@@ -85,13 +85,25 @@ def match_flower_streams_with_bouquet_design_structures(flower: str, bouquet_des
             # If from the bouquet design the total number of flowers is greater than the sum of the individual flowers
             # then we need to subtract those additional flowers as well from the flowers we have taken from the flower
             # stream
+            additional_flowers_removed = False
             if number_of_additional_flowers > 0:
                 for key in flowers_counter:
                     if flowers_counter[key] >= number_of_additional_flowers:
                         flowers_counter[key] = flowers_counter[key] - number_of_additional_flowers
+                        additional_flowers_removed = True
+                        print(bouquet_designs[bouquet_name]['bouquet'])
                         break
-
-            print(bouquet_designs[bouquet_name]['bouquet'])
+                # We currently do not have enough picked flowers from the flower stream to complete the additional
+                # flowers needed in making the bouquet so we have to put back all the flowers we already removed since
+                # the bouquet cannot be made
+                if not additional_flowers_removed:
+                    for key in flowers_counter:
+                        if key in bouquet_designs[bouquet_name]['flowers']:
+                            flowers_counter[key] = flowers_counter[key] + int(
+                                bouquet_designs[bouquet_name]['flowers'][key])
+            else:
+                # No additional flowers needed to make the bouquet so print it immediately
+                print(bouquet_designs[bouquet_name]['bouquet'])
 
 
 def create_bouquet_designs_matching_structure(bouquet_design: str, bouquet_designs_container: Dict) -> None:
@@ -164,5 +176,5 @@ def extract_flowers_from_input_stream(input_stream: str) -> List:
 
 
 if __name__ == '__main__':
-    input_file_name = "sample.txt"
+    input_file_name = "sample2.txt"
     production_facility(input_file_name)
